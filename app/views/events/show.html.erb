@@ -1,0 +1,22 @@
+<p id="notice">
+  <%= notice %>
+</p>
+<div class="events-wrapper row">
+  <div class="venue">
+    <div class="events-head">
+      <div class="title">
+        <%= @event.title %>
+      </div>
+    </div>
+    <div class="image center-block">
+      <%= link_to (image_tag @event.image.url(:medium), class:'img-responsive'), venue_path(@event) %>
+    </div>
+    <p class="title">
+      <%= @event.date_time %>
+      <br/>
+      <%= @event.description %>
+      <br/>
+      <%= link_to 'Edit', edit_venue_path(@event) %>
+    </p>
+  </div>
+</div>
