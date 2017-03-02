@@ -1,6 +1,6 @@
 %p#notice= notice
-%h1 Events
 .events-wrapper.row
+  %h1 Events
   -@events.each do |event|
     .event
       .event-head
@@ -14,7 +14,9 @@
         =event.date_time
         %br
         =event.description
+        %br
         = link_to 'Edit', edit_event_path(event)
+        %br
         = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Event', new_event_path
+  = link_to 'New Event', new_event_path
