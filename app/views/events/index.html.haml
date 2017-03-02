@@ -1,0 +1,20 @@
+%p#notice= notice
+%h1 Events
+.events-wrapper.row
+  -@events.each do |event|
+    .event
+      .event-head
+        .title
+          =event.title
+      .image.center-block
+        =link_to (image_tag event.image.url(:medium), class:'img-responsive'), event_path(event)
+      %p.title
+        =event.title
+        %br
+        =event.date_time
+        %br
+        =event.description
+        = link_to 'Edit', edit_event_path(event)
+        = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'New Event', new_event_path

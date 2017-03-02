@@ -5,7 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'devise' 
+gem 'html2haml'
+gem "erb2haml", :group => :development
+gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'hirb'
 gem 'haml', '~> 4.0.5'
