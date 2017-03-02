@@ -1,13 +1,14 @@
 %p#notice= notice
-%p
-  %strong Title:
-  = @event.title
-%p
-  %strong Date time:
-  = @event.date_time
-%p
-  %strong Description:
-  = @event.description
-= link_to 'Edit', edit_event_path(@event)
-|
-= link_to 'Back', events_path
+.events-wrapper.row
+  .venue
+    .events-head
+      .title
+        =@event.title
+    .image.center-block
+      =link_to (image_tag @event.image.url(:medium), class:'img-responsive'), venue_path(@event)
+    %p.title
+      =@event.date_time
+      %br
+      =@event.description
+      %br
+      = link_to 'Edit', edit_venue_path(@event)

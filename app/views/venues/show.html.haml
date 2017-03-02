@@ -1,0 +1,9 @@
+= render 'venue', venue: @venue
+- if @venue.user.id == current_user.id
+  .text-center.edit-links
+    = link_to "Cancel", venues_path
+    |
+    = link_to "Edit Venue", edit_venue_path(@venue)
+- else
+  .text-center.edit-links
+    =link_to "Cancel", venues_path

@@ -1,17 +1,2 @@
-.venues-wrapper.row
-  %h1 Venues
-  -@venues.each do |venue|
-    .venue
-      .venue-head
-        .title
-          =venue.title
-      .image.center-block
-        =link_to (image_tag venue.image.url(:medium), class:'img-responsive'), venue_path(venue)
-      %p.title
-        =venue.location
-        %br
-        =venue.description
-        %br
-        = link_to 'Edit', edit_venue_path(venue)
-
-  = link_to 'New Venue', new_venue_path
+-@venues.each do |venue|
+  = render 'venue', venue: venue
