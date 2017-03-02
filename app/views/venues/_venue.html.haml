@@ -13,21 +13,22 @@
         =venue.description
         %br
         = link_to 'Edit', edit_venue_path(venue)
-      - if venue.comments
-        - venue.comments.each do |comment|
-          .comment
-            .user-name
-              = comment.user.user_name
-            .comment-content
-              = comment.content
-            - if comment.user == current_user
-              = link_to venue_comment_path(venue, comment), method: :delete, data: { confirm: "Are you sure?" } do
-                %span(class="glyphicon glyphicon-remove delete-comment")
-    .comment-like-form.row
-      .like-button.col-sm-1
-        %span(class="glyphicon glyphicon-heart-empty")
-      .comment-form.col-sm-11 
-        = form_for [venue, venue.comments.new] do |f|
-          = f.text_field :content, placeholder: 'Add a comment...'
+      .venue-bottom
+        - if venue.comments
+          - venue.comments.each do |comment|
+            .comment
+              .user-name
+                = comment.user.user_name
+              .comment-content
+                = comment.content
+              - if comment.user == current_user
+                = link_to venue_comment_path(venue, comment), method: :delete, data: { confirm: "Are you sure?" } do
+                  %span(class="glyphicon glyphicon-remove delete-comment")
+      .comment-like-form.row
+        .like-button.col-sm-1
+          %span(class="glyphicon glyphicon-heart-empty")
+        .comment-form.col-sm-11
+          = form_for [venue, venue.comments.new] do |f|
+            = f.text_field :content, placeholder: 'Add a comment...'
 
   = link_to 'New Venue', new_venue_path
