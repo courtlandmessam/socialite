@@ -11,8 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 // Place all the styles related to the venues controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
@@ -57,12 +60,9 @@ body {
     margin-bottom: 60px;
 
     .venue-head {
-        flex-direction: row;
         height: 64px;
-        padding-left: 24px;
-        padding-right: 24px;
-        padding-top: 24px;
-        color: #125688;
+        padding: 14px 20px;
+        color: #ED1B24;
         font-size: 15px;
         line-height: 18px;
 
@@ -195,6 +195,7 @@ body {
     color: #ED1B24;
     font-size: 15px;
     line-height: 18px;
+
 
     .thumbnail {}
 

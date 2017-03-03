@@ -1,5 +1,7 @@
 class VenuesController < ApplicationController
   before_action :authenticate_user!
+  before_action :owned_venue, only: [:edit, :update, :destroy]
+
 
   def index
     @venues = Venue.all
@@ -48,5 +50,14 @@ class VenuesController < ApplicationController
   private
     def venue_params
       params.require(:venue).permit(:image, :title, :location, :description)
+    end
+
+    def owned_venue
+      @venue = Venue.find(params[:id])
+
+      unless current_user == @venue.user
+        flash[:alert] = "That post doesn't belong to you!"
+        redirect_to root_path
+      end
     end
 end

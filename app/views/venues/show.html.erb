@@ -1,0 +1,51 @@
+<div class="venues-wrapper">
+  <div class="venue">
+    <div class="venue-head">
+      <div class="title">
+        <%= @venue.title %>
+      </div>
+    </div>
+    <div class="image center-block">
+      <%= link_to (image_tag @venue.image.url(:medium), class:'img-responsive'), venue_path(@venue) %>
+      <p class="title">
+        <%= @venue.location %>
+        <br/>
+        <%= @venue.description %>
+        <br/>
+        <% if @venue.user_id == current_user.id %>
+          <%= link_to 'Edit', edit_venue_path(@venue) %>
+        <% else %>
+        <% end %>
+      </p>
+      <div class="venue-bottom">
+        <% if @venue.comments %>
+          <% @venue.comments.each do |comment| %>
+            <div class="comment">
+              <div class="user-name">
+                <%= comment.user.user_name %>
+              </div>
+              <div class="comment-content">
+                <%= comment.content %>
+              </div>
+              <% if comment.user == current_user %>
+                <%= link_to venue_comment_path(@venue, comment), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="comment-like-form row">
+        <div class="like-button col-sm-1">
+          <i class="fa fa-heartbeat" aria-hidden="true"></i>
+        </div>
+        <div class="comment-form col-sm-11">
+          <%= form_for [@venue, @venue.comments.new] do |f| %>
+            <%= f.text_field :content, placeholder: 'Add a comment...' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
