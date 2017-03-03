@@ -12,7 +12,7 @@ class VenuesController < ApplicationController
   end
 
   def new
-    @venue = Venue.new
+    @venue = current_user.venues.build
   end
 
   def edit
@@ -20,8 +20,15 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.create(venue_params)
-    redirect_to venues_path
+    @venue = current_user.venues.build(venue_params)
+
+    if @venue.save
+      flash[:success] = "Your venue  has been created!"
+      redirect_to venues_path
+    else
+      flash[:alert] = "Your new venue couldn't be created!  Please check the form."
+      render :new
+    end
   end
 
   def update
