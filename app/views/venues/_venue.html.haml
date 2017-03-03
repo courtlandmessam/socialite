@@ -30,5 +30,4 @@
         .comment-form.col-sm-11
           = form_for [venue, venue.comments.new] do |f|
             = f.text_field :content, placeholder: 'Add a comment...'
-
   = link_to 'New Venue', new_venue_path

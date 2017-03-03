@@ -12,7 +12,9 @@
         %br/
         = venue.description
         %br/
-        = link_to 'Edit', edit_venue_path(venue)
+        - unless @user.is_manager == true
+        - else
+          = link_to 'Edit', edit_venue_path(venue)
       .venue-bottom
         - if venue.comments
           - venue.comments.each do |comment|
@@ -30,4 +32,7 @@
         .comment-form.col-sm-11
           = form_for [venue, venue.comments.new] do |f|
             = f.text_field :content, placeholder: 'Add a comment...'
-  = link_to 'New Venue', new_venue_path
+
+  - unless @user.is_manager == true
+  - else
+    = link_to 'New Venue', new_venue_path

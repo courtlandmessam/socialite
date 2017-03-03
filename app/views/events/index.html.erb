@@ -20,11 +20,17 @@
         <br/>
         <%= event.description %>
         <br/>
+        <% unless @user.is_manager == true %>
+        <% else %>
         <%= link_to 'Edit', edit_event_path(event) %>
         <br/>
         <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
       </p>
     </div>
   <% end %>
+  <% unless @user.is_manager == true %>
+  <% else %>
   <%= link_to 'New Event', new_event_path %>
+  <% end %>
 </div>

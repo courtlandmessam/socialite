@@ -3,10 +3,12 @@ class VenuesController < ApplicationController
 
   def index
     @venues = Venue.all
+    @user = current_user
   end
 
   def show
     @venue = Venue.find(params[:id])
+    @user = current_user
   end
 
   def new
