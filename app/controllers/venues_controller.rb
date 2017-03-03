@@ -14,6 +14,7 @@ class VenuesController < ApplicationController
   end
 
   def edit
+    @venue = Venue.find(params[:id])
   end
 
   def create
@@ -22,6 +23,8 @@ class VenuesController < ApplicationController
   end
 
   def update
+    @venue = Venue.find(params[:id])
+
     respond_to do |format|
       if @venue.update(venue_params)
         format.html { redirect_to @venue, notice: 'Venue was successfully updated.' }
