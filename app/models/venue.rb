@@ -1,5 +1,5 @@
 class Venue < ApplicationRecord
-  validates :image, presence: true
+  # validate :image
   has_many :comments, dependent: :destroy
   belongs_to :user
 

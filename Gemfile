@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'google_places'
+gem 'httparty'
 gem 'font-awesome-sass'
 gem 'html2haml'
 gem "erb2haml", :group => :development
