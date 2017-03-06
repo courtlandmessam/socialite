@@ -13,6 +13,12 @@
       <p class="title">
         <%= venue.location %>
         <br/>
+        <%= pluralize((venue.get_upvotes.size - venue.get_downvotes.size), "vote") %>
+        <br/>
+        <%= button_to '+1', like_venue_path(venue), method: :post %>
+        <%= button_to '-1', dislike_venue_path(venue), method: :post %>
+        <%= button_to 'Reset', reset_venue_path(venue), method: :post %>
+        <br/>
         <%= venue.description %>
         <br/>
         <% if venue.user_id == current_user.id %>

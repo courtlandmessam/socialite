@@ -47,7 +47,22 @@ class VenuesController < ApplicationController
     end
   end
 
-  def like
+  def upvote
+    @venue = Venue.find(params[:id])
+    @venue.liked_by current_user
+    redirect_to venues_path
+  end 
+  
+  def reset
+    @venue = Venue.find(params[:id])
+    @venue.unvote_by current_user
+    redirect_to venues_path
+  end
+
+  def downvote
+    @venue = Venue.find(params[:id])
+    @venue.downvote_from current_user
+    redirect_to venues_path
   end 
 
   private
