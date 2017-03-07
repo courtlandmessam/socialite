@@ -11,6 +11,7 @@ gem 'font-awesome-sass'
 gem 'html2haml'
 gem "erb2haml", :group => :development
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'hirb'
 gem 'haml', '~> 4.0.5'
