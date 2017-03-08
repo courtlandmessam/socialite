@@ -1,5 +1,8 @@
 <div class="venues-wrapper row">
   <h1>Venues</h1>
+  <% if @venues.blank? %>
+    <h4>There are no Venues called <%= params[:search] %>.</h4>
+  <% end %>
   <% @venues.each do |venue| %>
     <div class="venue">
       <div class="venue-head">

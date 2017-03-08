@@ -16,8 +16,13 @@
             = link_to "Venues", venues_path
           %li
             = link_to "Logout", destroy_user_session_path, method: :delete
+          %li
+            = form_tag(venues_path, :method => "get", id: "search-form") do
+              = text_field_tag :search, params[:search], placeholder: "Search Venues"
+              = submit_tag "Search", :name => nil
         - else
           %li
             = link_to "Login", new_user_session_path
           %li
             = link_to "Register", new_user_registration_path
+          
