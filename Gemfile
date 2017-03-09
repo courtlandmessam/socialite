@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'will_paginate'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'google_places'
 gem 'httparty'

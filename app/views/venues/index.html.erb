@@ -63,6 +63,7 @@
       </div>
     </div>
   <% end %>
+  <%= will_paginate @venues %>
   <% unless @user.is_manager == true %>
   <% else %>
     <%= link_to 'New Venue', new_venue_path %>

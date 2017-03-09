@@ -22,6 +22,25 @@ class CommentsController < ApplicationController
     redirect_to root_path
   end
 
+
+  def upvote
+    @comment = Comment.find(params[:id])
+    @commment.liked_by current_user
+    redirect_to venues_path
+  end 
+  
+  def reset
+    @comment = Comment.find(params[:id])
+    @comment.unvote_by current_user
+    redirect_to venues_path
+  end
+
+  def downvote
+    @comment = Comment.find(params[:id])
+    @comment.downvote_from current_user
+    redirect_to venues_path
+  end 
+
   private
 
   def comment_params

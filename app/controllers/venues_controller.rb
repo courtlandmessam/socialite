@@ -4,7 +4,7 @@ class VenuesController < ApplicationController
 
 
   def index
-    @venues = Venue.all
+    @venues = Venue.all.order("title").paginate(:page => params[:page], :per_page => 5)
     @user = current_user
   end
 
