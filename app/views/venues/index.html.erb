@@ -8,18 +8,20 @@
         </div>
       </div>
       <div class="image center-block">
-        <%= link_to (image_tag venue.image.url(:medium), class:'img-responsive'), venue_path(venue) %>
+        <%= link_to (image_tag venue.image.url(:medium), class:'img-responsive'), venue_path(venue) %>      
       </div>
       <p class="title">
         <%= venue.location %>
         <br/>
-        <%= pluralize((venue.get_upvotes.size - venue.get_downvotes.size), "vote") %>
+        <%= link_to like_venue_path(venue), method: :post do %>
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>  <%= venue.get_upvotes.size %>
+        <% end %>
+        <%= link_to dislike_venue_path(venue), method: :post do %> 
+          <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> <%= venue.get_downvotes.size %>
+        <% end %>
+        <%= link_to 'Take it back', reset_venue_path(venue), method: :post %>
         <br/>
-        <%= button_to '+1', like_venue_path(venue), method: :post %>
-        <%= button_to '-1', dislike_venue_path(venue), method: :post %>
-        <%= button_to 'Reset', reset_venue_path(venue), method: :post %>
-        <br/>
-        <%= venue.description %>
+        Average Google Rating: <%= venue.description %>
         <br/>
         <% if venue.user_id == current_user.id %>
           <%= link_to 'Edit', edit_venue_path(venue) %>
