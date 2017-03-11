@@ -4,7 +4,7 @@ class VenuesController < ApplicationController
 
 
   def index
-    @venues = Venue.all
+    @venues = Venue.paginate(:page => params[:page], :per_page => 8)
     @user = current_user
     if params[:search]
       @venues = Venue.search(params[:search]).order("created_at DESC")
