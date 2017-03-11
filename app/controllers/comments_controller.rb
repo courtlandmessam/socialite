@@ -9,8 +9,8 @@ class CommentsController < ApplicationController
       flash[:success] = "You commented the hell out of that post!"
       redirect_to :back
     else
-      flash[:alert] = "Check the comment form, something went horribly wrong."
-      render root_path
+      flash[:alert] = "You forgot to add a photo..."
+      redirect_to root_path
     end
   end
 
