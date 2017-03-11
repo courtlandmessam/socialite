@@ -17,7 +17,7 @@
         <%= venue.location %>
         <br/>
         <%= venue.description %>
-        <%= link_to('vote for this post!', vote_up_post_path(@post), :method => :post) %>
+        <%= link_to('vote for this post!', vote_up_venue_path(venue), :method => :post) %>
         <br/>
         <% if venue.user_id == current_user.id %>
           <%= link_to 'Edit', edit_venue_path(venue) %>
