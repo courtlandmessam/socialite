@@ -30,7 +30,7 @@
     </div>
   <% end %>
   <% unless @user.is_manager == true %>
-  <% else %>
   <%= link_to 'New Event', new_event_path %>
+  <% else %>
   <% end %>
 </div>
