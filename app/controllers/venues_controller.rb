@@ -9,7 +9,7 @@ class VenuesController < ApplicationController
     if params[:search]
       @venues = Venue.search(params[:search]).order("created_at DESC")
     else
-      @venues = Venue.all.order("created_at DESC")
+      @venues = Venue.all.order("title")
     end
   end
 
