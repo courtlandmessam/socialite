@@ -17,8 +17,6 @@
         <%= venue.location %>
         <br/>
         <%= venue.description %>
-        <%= venue.votes_for %>
-        <%= button_to 'vote for this post!', vote_up_venue_path(venue), :method => :post %>
         <br/>
         <% if venue.user_id == current_user.id %>
           <%= link_to 'Edit', edit_venue_path(venue) %>
