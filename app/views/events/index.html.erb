@@ -29,7 +29,7 @@
       </p>
     </div>
   <% end %>
-  <% unless @user.is_manager == true %>
+  <% unless @user.is_manager != true %>
   <%= link_to 'New Event', new_event_path %>
   <% else %>
   <% end %>

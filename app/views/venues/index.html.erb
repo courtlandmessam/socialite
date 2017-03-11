@@ -60,7 +60,10 @@
       </div>
     </div>
   <% end %>
+  <% if params[:search] %>
+  <% else %>
   <%= will_paginate @venues %>
+  <% end %>
   <% unless @user.is_manager == true %>
   <% else %>
     <%= link_to 'New Venue', new_venue_path %>
