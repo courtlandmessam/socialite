@@ -50,8 +50,14 @@ class VenuesController < ApplicationController
     end
   end
 
-  def like
-  end 
+  def vote_up
+    @venue = Venue.find(params[:id])
+    unless current_user.voted_for?(@venue)
+      current_user.vote_for(@venue)
+      redirect_to venues_path
+    else
+    end
+  end
 
   private
     def venue_params
