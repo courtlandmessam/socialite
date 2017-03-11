@@ -1,6 +1,5 @@
 <div class="venues-wrapper row">
   <h1>Venues</h1>
-  <%= will_paginate @venues %>
   <% if @venues.blank? %>
     <h4>There are no Venues called <%= params[:search] %>.</h4>
   <% end %>
@@ -61,6 +60,7 @@
       </div>
     </div>
   <% end %>
+  <%= will_paginate @venues %>
   <% unless @user.is_manager == true %>
   <% else %>
     <%= link_to 'New Venue', new_venue_path %>
