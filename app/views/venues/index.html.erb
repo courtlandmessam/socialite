@@ -17,10 +17,19 @@
         <%= venue.location %>
         <br/>
         <%= venue.description %>
+        <br/>
+        <%= (venue.votes_for - venue.votes_against) %>
+        <br/>
         <% if current_user.voted_for?(venue) %>
         <%= link_to('vote for this post!') %>
         <% else %>
         <%= link_to('vote for this post!', vote_up_venue_path(venue), :method => :post) %>
+        <% end %>
+        <br/>
+        <% if current_user.voted_against?(venue) %>
+        <%= link_to('vote against this post!') %>
+        <% else %>
+        <%= link_to('vote against this post!', vote_down_venue_path(venue), :method => :post) %>
         <% end %>
         <br/>
         <% if venue.user_id == current_user.id %>

@@ -52,7 +52,13 @@ class VenuesController < ApplicationController
 
   def vote_up
     @venue = Venue.find(params[:id])
-    current_user.vote_for(@venue)
+    current_user.vote_exclusively_for(@venue)
+    redirect_to venues_path
+  end
+
+  def vote_down
+    @venue = Venue.find(params[:id])
+    current_user.vote_exclusively_against(@venue)
     redirect_to venues_path
   end
 
