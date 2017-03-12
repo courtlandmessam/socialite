@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<div class="events-wrapper row">
+  <h1>Deals</h1>
+  <% @deals.each do |deal| %>
+    <div class="event">
+      <div class="event-head">
+        <div class="title">
+          <%= deal.title %>
+        </div>
+      </div>
+      <div class="image center-block">
+        <%= link_to (image_tag deal.image.url(:medium), class:'img-responsive'), deal_path(deal) %>
+      </div>
+      <p class="title">
+        <%= deal.title %>
+        <br/>
+          <%= deal.start_time %>   
+          <%= deal.end_time %>   
+        <br/>
+        <%= deal.description %>
+    </div>
+  <% end %>
+  <% unless @user.is_manager != true %>
+  <%= link_to 'New Deal', new_deal_path %>
+  <% else %>
+  <% end %>
+</div>

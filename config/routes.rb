@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :deals
   resources :comments 
   resources :events do
     member do
