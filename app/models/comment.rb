@@ -1,6 +1,8 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :venue
+  acts_as_voteable
+
 
   validates :image, presence: true
 

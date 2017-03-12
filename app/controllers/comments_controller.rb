@@ -22,6 +22,24 @@ class CommentsController < ApplicationController
     redirect_to root_path
   end
 
+  def vote_up
+    @comment = @venue.comments.find(params[:id])
+    current_user.vote_exclusively_for(@comment)
+    redirect_to venues_path
+  end
+
+  def vote_down
+    @comment = @venue.comments.find(params[:id])
+    current_user.vote_exclusively_against(@comment)
+    redirect_to venues_path
+  end
+
+  def vote_reset
+    @comment = @venue.comments.find(params[:id])
+    current_user.unvote_for(@comment)
+    redirect_to venues_path
+  end
+
   private
 
   def comment_params

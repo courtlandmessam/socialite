@@ -15,7 +15,7 @@
       <p class="title">
         <%= venue.location %>
         <br/>
-        <%= venue.description %>
+        Google Rating <%= venue.description %>/5
         <br/>
         Rating: <%= (venue.votes_for - venue.votes_against) %>
         <br/>
@@ -25,6 +25,7 @@
         <br/>
         Total Number of Votes Today: <%= (venue.votes_for + venue.votes_against) %>
         <br/>
+        Total Number of Comments: <%= venue.comments.count %>
         <% if current_user.voted_for?(venue) %>
         <%= link_to('vote for this post!') %>
         <% else %>
@@ -51,6 +52,9 @@
               <div class="user-name">
                 <%= comment.user.user_name %>
               </div>
+              <br/>
+                <%= (comment.votes_for - comment.votes_against) %>
+              <br/>
               <div class="comment-content">
                 <%= comment.content %>
                 <% if comment.image_file_name != nil %>

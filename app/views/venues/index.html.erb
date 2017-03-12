@@ -46,6 +46,23 @@
               <div class="user-name">
                 <%= comment.user.user_name %>
               </div>
+              <br/>
+                <%= (comment.votes_for - comment.votes_against) %>
+                <br/>
+                <% if current_user.voted_for?(comment) %>
+                <%= link_to('vote for this comment!') %>
+                <% else %>
+                <%= link_to('vote for this comment!', vote_up_venue_comment_path(venue, comment), :method => :post) %>
+                <% end %>
+                <br/>
+                <% if current_user.voted_against?(comment) %>
+                <%= link_to('vote against this comment!') %>
+                <% else %>
+                <%= link_to('vote against this comment!', vote_down_venue_comment_path(venue, comment), :method => :post) %>
+                <% end %>
+                <br/>
+                <%= link_to('Reset!', vote_reset_venue_comment_path(venue, comment), :method => :post) %>
+              <br/>
               <div class="comment-content">
                 <%= comment.content %>
                 <% if comment.image_file_name != nil %>

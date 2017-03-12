@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments
+  resources :comments 
   resources :events
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
@@ -10,7 +10,13 @@ Rails.application.routes.draw do
     post :vote_down
     post :vote_reset
   	end
-    resources :comments
+    resources :comments do
+      member do
+      post :vote_up
+      post :vote_down
+      post :vote_reset
+      end
+    end
   end
   
   root 'venues#index'
