@@ -15,6 +15,8 @@
           %li
             = link_to "Venues", venues_path
           %li
+            = link_to "Deals", deals_path
+          %li
             = link_to "Logout", destroy_user_session_path, method: :delete
           %li
             = form_tag(venues_path, :method => "get", id: "search-form") do

@@ -63,6 +63,18 @@ class DealsController < ApplicationController
     end
   end
 
+   def vote_up
+    @deal = Deal.find(params[:id])
+    current_user.vote_exclusively_for(@deal)
+    redirect_to deals_path
+  end
+
+  def vote_reset
+    @deal = Deal.find(params[:id])
+    current_user.unvote_for(@deal)
+    redirect_to deals_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_deal

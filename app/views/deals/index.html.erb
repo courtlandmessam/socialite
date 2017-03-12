@@ -19,6 +19,25 @@
           <%= deal.end_time %>   
         <br/>
         <%= deal.description %>
+        <br/>
+          <% if current_user.voted_for?(deal) %>
+          <%= link_to('Favorited') %>
+          <% else %>
+          <%= link_to('Favorite!', vote_up_deal_path(deal), :method => :post) %>
+          <% end %>
+          <br/>
+          <% unless current_user.voted_for?(deal) %>
+          <%= link_to('Not Favorited') %>
+          <% else %>
+          <%= link_to('Unfavorite', vote_reset_deal_path(deal), :method => :post) %>
+          <% end %>
+          <br/>
+          <% unless @user.is_manager == true %>
+          <% else %>
+          <%= link_to 'Edit', edit_deal_path(deal) %>
+          <br/>
+          <%= link_to 'Destroy', deal, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
     </div>
   <% end %>
   <% unless @user.is_manager != true %>

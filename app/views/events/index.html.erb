@@ -20,7 +20,6 @@
         <br/>
         <%= event.description %>
         <br/>
-        <br/>
         <% if current_user.voted_for?(event) %>
         <%= link_to('Favorited') %>
         <% else %>

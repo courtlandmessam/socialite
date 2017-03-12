@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :deals
+  resources :deals do
+    member do
+    post :vote_up
+    post :vote_reset
+    end
+  end
+  
   resources :comments 
   resources :events do
     member do
