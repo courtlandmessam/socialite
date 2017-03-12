@@ -20,6 +20,19 @@
         <br/>
         <%= event.description %>
         <br/>
+        <br/>
+        <% if current_user.voted_for?(event) %>
+        <%= link_to('Favorited') %>
+        <% else %>
+        <%= link_to('Favorite!', vote_up_event_path(event), :method => :post) %>
+        <% end %>
+        <br/>
+        <% unless current_user.voted_for?(event) %>
+        <%= link_to('Not Favorited') %>
+        <% else %>
+        <%= link_to('Unfavorite', vote_reset_event_path(event), :method => :post) %>
+        <% end %>
+        <br/>
         <% unless @user.is_manager == true %>
         <% else %>
         <%= link_to 'Edit', edit_event_path(event) %>

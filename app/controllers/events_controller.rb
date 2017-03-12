@@ -55,6 +55,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def vote_up
+    @event = Event.find(params[:id])
+    current_user.vote_exclusively_for(@event)
+    redirect_to events_path
+  end
+
+  def vote_reset
+    @event = Event.find(params[:id])
+    current_user.unvote_for(@event)
+    redirect_to events_path
+  end
+
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
