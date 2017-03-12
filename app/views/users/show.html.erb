@@ -17,7 +17,13 @@
         <br/>
         <%= venue.description %>
         <br/>
-        <%= (venue.votes_for - venue.votes_against) %>
+        Rating: <%= (venue.votes_for - venue.votes_against) %>
+        <br/>
+        Number of Upvotes: <%= (venue.votes_for) %>
+        <br/>
+        Number of Downvotes: <%= (venue.votes_against) %>
+        <br/>
+        Total Number of Votes Today: <%= (venue.votes_for + venue.votes_against) %>
         <br/>
         <% if current_user.voted_for?(venue) %>
         <%= link_to('vote for this post!') %>
@@ -73,6 +79,32 @@
           <% end %>
         </div>
       </div>
+    </div>
+  <% end %>
+
+  <div class="events-wrapper row">
+  <h1>Events</h1>
+  <% @events.each do |event| %>
+    <div class="event">
+      <div class="event-head">
+        <div class="title">
+          <%= event.title %>
+        </div>
+      </div>
+      <div class="image center-block">
+        <%= link_to (image_tag event.image.url(:medium), class:'img-responsive'), event_path(event) %>
+      </div>
+      <p class="title">
+        <%= event.title %>
+        <br/>
+        <%= event.date_time %>
+        <br/>
+        <%= event.description %>
+        <br/>
+        <%= link_to 'Edit', edit_event_path(event) %>
+        <br/>
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
     </div>
   <% end %>
 </div>
