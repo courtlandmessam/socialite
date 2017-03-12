@@ -51,14 +51,12 @@ class VenuesController < ApplicationController
   end
 
   def vote_up
-    @user = current_user
     @venue = Venue.find(params[:id])
-    unless @user.voted_for?(@venue)
-      @user.vote_for(@venue)
-      redirect_to venues_path
-    else
+    current_user.vote_for(@venue)
+    respond_to do |format|
+      format.js
     end
-  end
+end
 
   private
     def venue_params
