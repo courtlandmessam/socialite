@@ -62,6 +62,12 @@ class VenuesController < ApplicationController
     redirect_to venues_path
   end
 
+  def vote_reset
+    @venue = Venue.find(params[:id])
+    current_user.unvote_for(@venue)
+    redirect_to venues_path
+  end
+
   private
     def venue_params
       params.require(:venue).permit(:image, :title, :location, :description)
