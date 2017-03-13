@@ -16,7 +16,7 @@ class FeedbacksController < ApplicationController
   def new
     @feedback = current_user.feedbacks.build
   end
-  end
+  
 
   # GET /feedbacks/1/edit
   def edit
