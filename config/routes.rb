@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :claim_venues
   resources :feedbacks
   resources :deals do
     member do

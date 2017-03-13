@@ -87,7 +87,7 @@
         </div>
         <div class="comment-form col-sm-11">
           <%= simple_form_for [venue, venue.comments.new] do |f| %>
-            <%= f.input :image %>
+            <%= f.input :image, :required => true %>
             <%= f.input :content %>
             <%= f.button :submit %>
           <% end %>
