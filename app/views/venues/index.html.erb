@@ -63,6 +63,8 @@
                 <br/>
                 <%= link_to('Reset!', vote_reset_venue_comment_path(venue, comment), :method => :post) %>
               <br/>
+              <%= time_ago_in_words(comment.created_at) %>
+              <br/>
               <div class="comment-content">
                 <%= comment.content %>
                 <% if comment.image_file_name != nil %>

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :venues, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :deals, dependent: :destroy
+  has_many :feedbacks
 
   acts_as_voter
   # Include default devise modules. Others available are:
