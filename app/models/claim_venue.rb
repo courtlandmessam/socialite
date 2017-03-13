@@ -1,0 +1,2 @@
+class ClaimVenue < ApplicationRecord
+end

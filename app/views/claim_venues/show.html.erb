@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @claim_venue.name %>
+</p>
+
+<p>
+  <strong>Venue:</strong>
+  <%= @claim_venue.venue %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @claim_venue.email %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @claim_venue.phone_number %>
+</p>
+
+<p>
+  <strong>Other:</strong>
+  <%= @claim_venue.other %>
+</p>
+
+<%= link_to 'Edit', edit_claim_venue_path(@claim_venue) %> |
+<%= link_to 'Back', claim_venues_path %>
