@@ -1,5 +1,7 @@
 <div class="venues-wrapper row">
   <%= link_to 'New Event', new_event_path %>
+  <br/>
+  <%= link_to 'New Deal', new_deal_path %>
 
   <h1>Venues</h1>
   <% @venues.each do |venue| %>
@@ -111,4 +113,49 @@
       </p>
     </div>
   <% end %>
+  </div>
+
+  <div class="events-wrapper row">
+  <h1>Deals</h1>
+  <% @deals.each do |deal| %>
+    <div class="event">
+      <div class="event-head">
+        <div class="title">
+          <%= deal.title %>
+        </div>
+      </div>
+      <div class="image center-block">
+        <%= link_to (image_tag deal.image.url(:medium), class:'img-responsive'), deal_path(deal) %>
+      </div>
+      <p class="title">
+        <%= deal.title %>
+        <br/>
+          <%= deal.start_time %>   
+          <%= deal.end_time %>   
+        <br/>
+        <%= deal.description %>
+        <br/>
+          <% if current_user.voted_for?(deal) %>
+          <%= link_to('Favorited') %>
+          <% else %>
+          <%= link_to('Favorite!', vote_up_deal_path(deal), :method => :post) %>
+          <% end %>
+          <br/>
+          <% unless current_user.voted_for?(deal) %>
+          <%= link_to('Not Favorited') %>
+          <% else %>
+          <%= link_to('Unfavorite', vote_reset_deal_path(deal), :method => :post) %>
+          <% end %>
+          <br/>
+          <% unless @user.is_manager == true %>
+          <% else %>
+          <%= link_to 'Edit', edit_deal_path(deal) %>
+          <br/>
+          <%= link_to 'Destroy', deal, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+    </div>
+  <% end %>
+
+
+
 </div>
