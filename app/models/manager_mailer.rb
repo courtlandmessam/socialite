@@ -9,4 +9,3 @@ class ManagerMailer < ApplicationRecord
     mail(:to => 'messamcourtland@gmail.com', :subject => "New Manager created please review and enable.")
   end
 end
-end
