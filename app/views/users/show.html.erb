@@ -1,3 +1,4 @@
+<% if current_user.is_manager == true %>
 <div class="venues-wrapper row">
   <%= link_to 'New Event', new_event_path %>
   <br/>
@@ -155,7 +156,74 @@
           <% end %>
     </div>
   <% end %>
+</div>
+
+<% else %>
+<div class="venues-wrapper row">
+  <%= link_to "Edit Your Account", edit_user_registration_path %>
+
+<h2> Comments Youve Liked </h2>
+ <div class="venue-bottom">
+  <% @all_comments.each do |comment| %>
+   <% if @user_liked_comments_id.any? {|liked| liked == comment.id} %>
+      <div class="comment">
+         <div class="user-name">
+           <%= comment.user.user_name %>
+         </div>
+           <br/>
+            <div class="comment-content">
+             <%= comment.content %>
+             <% if comment.image_file_name != nil %>
+                  <%= image_tag comment.image.url(:small), class:'img-responsive' %>
+             <% else %>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+
+<h2> Your Favorite Deals </h2>
+ <div class="venue-bottom">
+  <% @all_deals.each do |deal| %>
+   <% if @user_liked_deals_id.any? {|liked| liked == deal.id} %>
+      <div class="comment">
+         <div class="user-name">
+           <%= deal.title %>
+         </div>
+           <br/>
+            <div class="comment-content">
+             <%= deal.description %>
+             <% if deal.image_file_name != nil %>
+                  <%= image_tag deal.image.url(:medium), class:'img-responsive' %>
+             <% else %>
+    <% end %>
+    <%= deal.start_time %>
+    <%= deal.end_time %>
+  <% end %>
+<% end %>
+</div>
+
+<h2> Your Favorite Events </h2>
+ <div class="venue-bottom">
+  <% @all_events.each do |event| %>
+   <% if @user_liked_events_id.any? {|liked| liked == event.id} %>
+      <div class="comment">
+         <div class="user-name">
+           <%= event.title %>
+         </div>
+           <br/>
+            <div class="comment-content">
+             <%= event.description %>
+             <% if event.image_file_name != nil %>
+                  <%= image_tag event.image.url(:medium), class:'img-responsive' %>
+             <% else %>
+    <% end %>
+    <%= event.date_time %>
+  <% end %>
+<% end %>
+</div>
+
 
 
 
 </div>
+<% end %>
