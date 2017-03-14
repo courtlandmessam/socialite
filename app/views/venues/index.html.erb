@@ -76,6 +76,7 @@
                     <%= link_to('Reset!', vote_reset_venue_comment_path(venue, comment), :method => :post) %>
                     <br/>
                     <%= time_ago_in_words(comment.created_at) %> ago
+                    
 
                     <div class="comment-content">
                         <% comment.image_file_name != nil %>
@@ -94,10 +95,14 @@
                           <i class="fa fa-times-circle" aria-hidden="true">delete</i>
                         <% end %>
                         <% end %>
+                        
+                        <div class="divider"></div>
                     </div>
                     <% end %>
                     <% end %>
                 </div>
+                
+                
                 <div class="comment-like-form row">
                     <div class="like-button col-sm-1">
                         <i class="fa fa-heartbeat" aria-hidden="true"></i>
