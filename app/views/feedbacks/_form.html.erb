@@ -1,15 +1,45 @@
-<%= simple_form_for(@feedback) do |f| %>
-  <%= f.error_notification %>
+<%= render 'layouts/navbar' %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :age %>
-    <%= f.input :gender %>
-    <%= f.input :email %>
-    <%= f.input :content, :required => true %>
-  </div>
+<div id="login-page" class="row more-padding">
+    <div class="col s12 m4 l4 offset-l4 offset-m4 z-depth-4 card-panel">
+        <div class="login-form card large main-card">
+            <%= simple_form_for(@feedback) do |f| %>
+            <%= f.error_notification %>
+            <p class="center login-form-text">Feedback</p>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+            <div class="row">
+                <div class="feedback-margin-bottom input-field col s12 center">
+                    <%= f.input :name %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="feedback-margin-bottom input-field col s12">
+                    <%= f.input :email, as: :email %>
+                </div>
+            </div>
+            <div class="row margin">
+                <div class="feedback-margin-bottom input-field col s12">
+                    <!-- <i class="material-icons prefix">perm_identity</i> -->
+                    <%= f.input :age %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="feedback-margin-bottom input-field col s12">
+                    <%= f.input :gender %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="feedback-margin-bottom input-field col s12">
+                    <%= f.input :content, :required => true  %>
+                </div>
+            </div>
+
+            <div class="row center">
+                <div class="feedback-margin-bottom input-field col s12">
+                        <%= f.button :submit, "Submit", class: "red darken-2 sbtn waves-effect waves-light col s12" %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

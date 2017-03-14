@@ -30,7 +30,7 @@ class DealsController < ApplicationController
 
     respond_to do |format|
       if @deal.save
-        format.html { redirect_to @deal, notice: 'Deal was successfully created.' }
+        format.html { redirect_to user_path(1), notice: 'Deal was successfully created.' }
         format.json { render :show, status: :created, location: @deal }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class DealsController < ApplicationController
   def update
     respond_to do |format|
       if @deal.update(deal_params)
-        format.html { redirect_to @deal, notice: 'Deal was successfully updated.' }
+        format.html { redirect_to user_path(1), notice: 'Deal was successfully updated.' }
         format.json { render :show, status: :ok, location: @deal }
       else
         format.html { render :edit }

@@ -27,11 +27,12 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
+    @user = current_user
     @feedback = current_user.feedbacks.build(feedback_params)
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
+        format.html { redirect_to new_feedback_path, notice: 'Feedback was successfully created.' }
         format.json { render :show, status: :created, location: @feedback }
       else
         format.html { render :new }

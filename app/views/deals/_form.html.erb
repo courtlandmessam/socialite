@@ -6,35 +6,34 @@
             <div class="row margin">
                 <div class="input-field col s12">
                     <!-- <i class="material-icons prefix">perm_identity</i> -->
-                    <%= f.text_field :title, required: true %>
+                    <%= f.text_field :title, required: true, error: 'Title is mandatory' %>
                     <%= f.label :title %>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
                     <!-- <i class="material-icons prefix">perm_identity</i> -->
-                    <%= f.input :image %>
-                    <%= f.label :image %>
+                    <%= f.input :image, label: false  %>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s12">
                     <!-- <i class="material-icons prefix">lock_outline</i> -->
                     <%= f.input :description, required: true %>
-                    <%= f.label :description %>
+                    <%# f.label :description %>
                 </div>
             </div>
             <div class="row margin">
                 <div class="input-field col s6">
                     <!-- <i class="material-icons prefix">lock_outline</i> -->
-                    <%= f.input :start_time %>
-                    <%= f.label :start_time %>
+                    <%= f.input :start_time, label: false, as: :time, html5: true %>
+                    <%# f.label :start_time %>
                 </div>
                 
                 <div class="input-field col s6">
                     <!-- <i class="material-icons prefix">lock_outline</i> -->
-                    <%= f.input :end_time %>
-                    <%= f.label :end_time %>
+                    <%= f.input :end_time, label: false, html5: true %>
+                    <%# f.label :end_time %>
                 </div>
             </div>
             <div class="row">

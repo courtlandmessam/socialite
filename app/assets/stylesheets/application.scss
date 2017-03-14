@@ -13,6 +13,10 @@
  */
 
 
+ .feedback-margin-bottom {
+   margin-bottom: -20px !important;
+ }
+ 
 input[type="search"] {
    height: 64px !important;
    /* or height of nav */
@@ -25,6 +29,17 @@ input[type="search"] {
 .less-padding {
  padding-top: -40px !important;
 }
+.less-bottom-padding {
+ padding-bottom: 0px !important;
+}
+
+.more-padding {
+ padding-top: 70px !important;
+}
+
+.more-bottom-padding {
+ padding-bottom: 70px !important;
+}
 
 .google-rating {
  font-size: 1.2em;
@@ -36,6 +51,11 @@ input[type="search"] {
 
 #search-form {
   padding-right: 100px;
+}
+
+.input-box {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 
