@@ -1,6 +1,10 @@
+<%= render 'layouts/navbar' %>
+
 <p id="notice">
   <%= notice %>
 </p>
+
+
 <div class="events-wrapper row">
   <h1>Events</h1>
   <% @events.each do |event| %>
@@ -16,7 +20,7 @@
       <p class="title">
         <%= event.title %>
         <br/>
-        <%= event.date_time %>
+        <%= event.date_time, type: "date", class: "datepicker"%>
         <br/>
         <%= event.description %>
         <br/>

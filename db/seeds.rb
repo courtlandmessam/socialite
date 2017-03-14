@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-@client = GooglePlaces::Client.new(ENV["google_places_key"])
+@client = GooglePlaces::Client.new("AIzaSyCemfwRQTFMCFHupKC3alS8Urh1vuoJMv4")
 @google_downtown_venues = @client.spots_by_query('Downtown Miami Florida', :types => ['bar', 'night_club'])
 
 @google_downtown_venues.each do |v|

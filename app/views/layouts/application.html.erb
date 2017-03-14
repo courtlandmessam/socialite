@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socialite: Find out what’s happening at all your favorite locations in real-time.</title>
+    <meta name=”description” content="Socialite is a community app built on real time reviews. See what's happening at your favorite spot before you make the drive.">
+    <meta name="keywords" content="event socialite social brogrammer nightlife brunch bar lounge real-time reviews club restaurant hotel venue management promoter tools marketing social media app store community iphone android">
+    <link href="/assets/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
+    
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- <link href="/assets/style.min.css" rel="stylesheet" type="text/css" /> -->
+
+    <!-- Materialize -->    
+    <%= favicon_link_tag(source='favicon.ico', options={}) %>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <!-- <script src="https://use.fontawesome.com/3e9e12acdb.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    
+  </head>
+  <body>
+    
+    <%# render 'layouts/navbar' %>
+    
+    
+    <!-- <p class="notice">
+      <%# notice %>
+    </p>
+    <p class="alert">
+      <%# alert %>
+    </p> -->
+
+    
+    <%= yield %>
+  </body>
+</html>

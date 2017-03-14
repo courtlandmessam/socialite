@@ -5,7 +5,7 @@ class Venue < ApplicationRecord
   acts_as_voteable
 
 
-  has_attached_file :image, styles: { :medium => "640x" }
+  has_attached_file :image, styles: { small: "150x", medium: "828x315#" }
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def self.search(search)

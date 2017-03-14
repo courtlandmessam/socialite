@@ -12,194 +12,281 @@
  *
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
-// Place all the styles related to the venues controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-    background-color: #ED1B24;
-    font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+
+input[type="search"] {
+   height: 64px !important;
+   /* or height of nav */
 }
 
-.navbar-brand {
-    a {
-        color: #ED1B24;
-    }
+.less-margin {
+ margin-top: -20px !important;
 }
 
-.navbar-default {
-    background-color: #fff;
-    height: 54px;
-
-    .navbar-nav li a {
-        color: white;
-    }
+.less-padding {
+ padding-top: -40px !important;
 }
 
-.navbar-container {
-    width: 640px;
-    margin: 0 auto;
+.google-rating {
+ font-size: 1.2em;
 }
 
-.venues-wrapper {
-    padding-top: 40px;
-    margin: 0 auto;
-    max-width: 642px;
-    width: 100%;
+.subhead-padding {
+ padding: 0 16px !important;
 }
 
-.venue {
-    background-color: #fff;
-    border-color: #edeeee;
-    border-style: solid;
-    border-radius: 3px;
-    border-width: 1px;
-    margin-bottom: 60px;
-
-    .venue-head {
-        height: 64px;
-        padding: 14px 20px;
-        color: #ED1B24;
-        font-size: 15px;
-        line-height: 18px;
-
-        .time-ago,
-        .user-name {
-            display: inline;
-        }
-
-        .user-name {
-            font-weight: 500;
-        }
-
-        .time-ago {
-            color: #A5A7AA;
-            float: right;
-        }
-    }
-
-    .image {
-        border-bottom: 1px solid #eeefef;
-        border-top: 1px solid #eeefef;
-    }
+#search-form {
+  padding-right: 100px;
 }
 
-.venue-bottom {
-    .comment-content,
-    .user-name {
-        display: inline;
-    }
-
-    .caption {
-        margin-bottom: 7px;
-    }
-
-    .user-name {
-        font-weight: 500;
-        margin-right: 0.3em;
-        color: #125688;
-        font-size: 15px;
-    }
-
-    .caption-content,
-    .user-name {
-        display: inline;
-    }
-
-    #comment {
-        margin-top: 7px;
-
-        .user-name {
-            font-weight: 500;
-            margin-right: 0.3em;
-        }
-
-        .delete-comment {
-            float: right;
-            color: #515151;
-        }
-    }
-    margin-bottom: 7px;
-    padding: 24px 24px 10px;
-    font-size: 15px;
-    line-height: 18px;
-}
-
-.comment_content {
-    font-size: 15px;
-    line-height: 18px;
-    border: medium none;
-    width: 100%;
-    color: #4B4F54;
-}
-
-.comment-like-form {
-    padding-top: 24px;
-    margin-top: 13px;
-    margin-left: 24px;
-    margin-right: 24px;
-    min-height: 68px;
-    align-items: center;
-    border-top: 1px solid #EEEFEF;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.image {
-    border-bottom: 1px solid #eeefef;
-    border-top: 1px solid #eeefef;
-}
-
-.title {
-    padding: 24px;
-    font-size: 15px;
-    line-height: 18px;
-}
-
-.form-wrapper {
-    width: 60%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 40px;
-    border: 1px solid #eeefef;
-    border-radius: 3px;
-}
-
-.edit-links {
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-.events-wrapper {
-    padding-top: 40px;
-    margin: 0 auto;
-    max-width: 642px;
-    width: 100%;
-}
-
-.event {
-    background-color: #fff;
-    border-color: #edeeee;
-    border-style: solid;
-    border-radius: 3px;
-    border-width: 1px;
-    margin-bottom: 60px;
-}
-
-.event-head {
-    height: 64px;
-    padding: 14px 20px;
-    color: #ED1B24;
-    font-size: 15px;
-    line-height: 18px;
 
 
-    .thumbnail {}
 
-    .title {
-        display: block;
-    }
-}
+ // .man-profile-img {
+ //   // // margin: -10px;
+ //   
+ //   background-size: cover;
+ //   background-position: 50%;
+ //   border-radius: 50%;
+ //   width: auto;
+ //   height: 100%;
+ // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ input[type="search"] {
+     height: 64px !important;
+     /* or height of nav */
+ }
+
+ .less-margin {
+   margin-top: -30px !important;
+ }
+
+ .more-margin {
+   padding-bottom: 20px !important;
+ }
+
+ .google-rating {
+   font-size: 1.2em;
+ }
+
+ .subhead-padding {
+   padding: 0 16px !important;
+ }
+
+ .man-profile-img {
+   // // margin: -10px;
+   
+   background-size: cover;
+   background-position: 50%;
+   border-radius: 50%;
+   width: auto;
+   height: 100%;
+ }
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+// @import "font-awesome-sprockets";
+// @import "font-awesome";
+// // Place all the styles related to the venues controller here.
+// // They will automatically be included in application.css.
+// // You can use Sass (SCSS) here: http://sass-lang.com/
+// body {
+//     background-color: #ED1B24;
+//     font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+// }
+// 
+// .navbar-brand {
+//     a {
+//         color: #ED1B24;
+//     }
+// }
+// 
+// .navbar-default {
+//     background-color: #fff;
+//     height: 54px;
+// 
+//     .navbar-nav li a {
+//         color: white;
+//     }
+// }
+// 
+// .navbar-container {
+//     width: 640px;
+//     margin: 0 auto;
+// }
+// 
+// .venues-wrapper {
+//     padding-top: 40px;
+//     margin: 0 auto;
+//     max-width: 642px;
+//     width: 100%;
+// }
+// 
+// .venue {
+//     background-color: #fff;
+//     border-color: #edeeee;
+//     border-style: solid;
+//     border-radius: 3px;
+//     border-width: 1px;
+//     margin-bottom: 60px;
+// 
+//     .venue-head {
+//         height: 64px;
+//         padding: 14px 20px;
+//         color: #ED1B24;
+//         font-size: 15px;
+//         line-height: 18px;
+// 
+//         .time-ago,
+//         .user-name {
+//             display: inline;
+//         }
+// 
+//         .user-name {
+//             font-weight: 500;
+//         }
+// 
+//         .time-ago {
+//             color: #A5A7AA;
+//             float: right;
+//         }
+//     }
+// 
+//     .image {
+//         border-bottom: 1px solid #eeefef;
+//         border-top: 1px solid #eeefef;
+//     }
+// }
+// 
+// .venue-bottom {
+//     .comment-content,
+//     .user-name {
+//         display: inline;
+//     }
+// 
+//     .caption {
+//         margin-bottom: 7px;
+//     }
+// 
+//     .user-name {
+//         font-weight: 500;
+//         margin-right: 0.3em;
+//         color: #125688;
+//         font-size: 15px;
+//     }
+// 
+//     .caption-content,
+//     .user-name {
+//         display: inline;
+//     }
+// 
+//     #comment {
+//         margin-top: 7px;
+// 
+//         .user-name {
+//             font-weight: 500;
+//             margin-right: 0.3em;
+//         }
+// 
+//         .delete-comment {
+//             float: right;
+//             color: #515151;
+//         }
+//     }
+//     margin-bottom: 7px;
+//     padding: 24px 24px 10px;
+//     font-size: 15px;
+//     line-height: 18px;
+// }
+// 
+// .comment_content {
+//     font-size: 15px;
+//     line-height: 18px;
+//     border: medium none;
+//     width: 100%;
+//     color: #4B4F54;
+// }
+// 
+// .comment-like-form {
+//     padding-top: 24px;
+//     margin-top: 13px;
+//     margin-left: 24px;
+//     margin-right: 24px;
+//     min-height: 68px;
+//     align-items: center;
+//     border-top: 1px solid #EEEFEF;
+//     flex-direction: row;
+//     justify-content: center;
+// }
+// 
+// .image {
+//     border-bottom: 1px solid #eeefef;
+//     border-top: 1px solid #eeefef;
+// }
+// 
+// .title {
+//     padding: 24px;
+//     font-size: 15px;
+//     line-height: 18px;
+// }
+// 
+// .form-wrapper {
+//     width: 60%;
+//     margin: 20px auto;
+//     background-color: #fff;
+//     padding: 40px;
+//     border: 1px solid #eeefef;
+//     border-radius: 3px;
+// }
+// 
+// .edit-links {
+//     margin-top: 20px;
+//     margin-bottom: 40px;
+// }
+// 
+// .events-wrapper {
+//     padding-top: 40px;
+//     margin: 0 auto;
+//     max-width: 642px;
+//     width: 100%;
+// }
+// 
+// .event {
+//     background-color: #fff;
+//     border-color: #edeeee;
+//     border-style: solid;
+//     border-radius: 3px;
+//     border-width: 1px;
+//     margin-bottom: 60px;
+// }
+// 
+// .event-head {
+//     height: 64px;
+//     padding: 14px 20px;
+//     color: #ED1B24;
+//     font-size: 15px;
+//     line-height: 18px;
+// 
+// 
+//     .thumbnail {}
+// 
+//     .title {
+//         display: block;
+//     }
+// }

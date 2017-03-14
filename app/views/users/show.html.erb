@@ -1,3 +1,5 @@
+<%= render 'layouts/navbar' %>
+
 <% if current_user.is_manager == true %>
 <div class="venues-wrapper row">
   <%= link_to 'New Event', new_event_path %>
@@ -59,6 +61,7 @@
                 <%= (comment.votes_for - comment.votes_against) %>
               <br/>
               <div class="comment-content">
+                <%= time_ago_in_words(comment.created_at) %> ago
                 <%= comment.content %>
                 <% if comment.image_file_name != nil %>
                   <%= image_tag comment.image.url(:small), class:'img-responsive' %>

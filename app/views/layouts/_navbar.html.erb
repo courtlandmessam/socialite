@@ -1,0 +1,163 @@
+<!-- NAV -->
+
+<% if @user.is_manager == false %>
+<nav class="red lighten-1" role="navigation">
+<div class="nav-wrapper">
+  <div class="navbar-brand">
+    <%= link_to "Socialite", user_path(1) %>
+  </div>
+  <ul class="right hide-on-med-and-down">
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to "Events", events_path %>
+      </li>
+      <li>
+        <%= link_to "Venues", venues_path %>
+      </li>
+      <li>
+        <%= link_to "Deals", deals_path %>
+      </li>
+      <li>
+        <%= link_to "Feedback", new_feedback_path %>
+      </li>
+      <li>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      </li>
+      <li>
+        <i class="material-icons">search</i>
+        <%= form_tag(venues_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Venues" %>
+          <%= submit_tag "Search", :name => nil %>
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "Login", new_user_session_path %>
+      </li>
+      <li>
+        <%= link_to "Register", new_user_registration_path %>
+      </li>
+    <% end %>
+  </ul>
+    
+  <!-- SIDE NAV -->
+  <ul id="slide-out" class="side-nav">
+    <li>
+      <div class="userView">
+      <div class="background">
+        <%= image_tag 'red.jpg' %>
+      </div>
+      <a href="#!user"><%= image_tag 'niko.jpg', class: "circle" %></a>
+      <a href="#!name"><span class="black-text name">Niko Yanez</span></a>
+      <a href="#!email"><span class="blac-text email">niko@gmail.com</span></a>
+      </div>
+    </li>
+    
+    <li><a href="#!"><i class="material-icons">perm_identity</i>Profile</a></li>
+    
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header">Venues<i class="material-icons">arrow_drop_down</i></a>
+          <div class="collapsible-body">
+            <ul>
+              <li><a href="#!">Bars</a></li>
+              <li><a href="#!">Restaurants</a></li>
+              <li><a href="#!">Clubs</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li><a class="subhead-padding">Events<i class="material-icons">arrow_right_drop</i></li></a>
+    <li><a class="subhead-padding">Feedback<i class="material-icons">arrow_right_drop</i></li></a>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+</div>
+</nav>
+
+<% elsif @user.is_manager == true %>
+
+<nav class="yellow darken-2" role="navigation">
+<div class="nav-wrapper">
+  <%= link_to "Socialite", user_path(1), class: "brand-logo center" %></a>
+  <ul class="right hide-on-med-and-down">
+    <% if user_signed_in? %>
+    <li>
+      <form>
+        <div class="input-field">
+          <%= form_tag(venues_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search] %>
+          <% end %>
+          <label for="search"><i class="material-icons">search</i></label>
+          <%# submit_tag "Search", :name => nil %>
+        </div>
+      </form>
+    </li>
+      <li>
+        <%= link_to "Events", events_path %>
+      </li>
+      <li>
+        <%= link_to "Venues", venues_path %>
+      </li>
+      <li>
+        <%= link_to "Deals", deals_path %>
+      </li>
+      <li>
+        <%= link_to "Feedback", new_feedback_path %>
+      </li>
+      <li>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "Login", new_user_session_path %>
+      </li>
+      <li>
+        <%= link_to "Register", new_user_registration_path %>
+      </li>
+    <% end %>
+  </ul>
+    
+  <!-- SIDE NAV -->
+  <ul id="slide-out" class="side-nav">
+    <li>
+      <div class="userView">
+      <div class="background">
+        <%= image_tag 'red.jpg' %>
+      </div>
+      <a href="#!user"><%= image_tag 'niko.jpg', class: "circle" %></a>
+      <a href="#!name"><span class="black-text name">Niko Yanez</span></a>
+      <a href="#!email"><span class="blac-text email">niko@gmail.com</span></a>
+      </div>
+    </li>
+    
+    <li><a href="#!"><i class="material-icons">perm_identity</i>Profile</a></li>
+    
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header">Venues<i class="material-icons">arrow_drop_down</i></a>
+          <div class="collapsible-body">
+            <ul>
+              <li><a href="#!">Bars</a></li>
+              <li><a href="#!">Restaurants</a></li>
+              <li><a href="#!">Clubs</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li><a class="subhead-padding">Events<i class="material-icons">arrow_right_drop</i></li></a>
+    <li><a class="subhead-padding">Feedback<i class="material-icons">arrow_right_drop</i></li></a>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+</div>
+</nav>
+<% else %>
+
+<% end %>

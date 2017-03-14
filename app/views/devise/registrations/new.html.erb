@@ -1,15 +1,55 @@
-<div class="venues-wrapper">
-  <h2>Sign up</h2>
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
-    <div class="form-inputs">
-      <%= f.input :email, required: true, autofocus: true %>
-      <%= f.input :user_name, required: true %>
-      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-      <%= f.input :password_confirmation, required: true %>
+<div id="login-page" class="row">
+    <div class="col s12 m4 l4 offset-l4 offset-m4 z-depth-4 card-panel">
+        <div class="login-form card large main-card">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">perm_identity</i>
+                    <%= f.text_field :email, required: true %>
+                    <%= f.label :email %>
+                </div>
+            </div>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">perm_identity</i>
+                    <%= f.text_field :user_name, required: true %>
+                    <%= f.label :user_name %>
+                </div>
+            </div>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <%= f.password_field :password, required: true %>
+                    <%= f.label :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                </div>
+            </div>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <%= f.password_field :password_confirmation, required: true %>
+                    <%= f.label :password_confirmation, required: true %>
+                </div>
+            </div>
+            <!-- <div class="less-margin row">
+                <div class="input-field col s12 m12 l12 login-text">
+                    <%# f.check_box :is_manager %>
+                    <%# f.label :is_manager, "Check box if manager" %>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="less-margin input-field col s12">
+                    <%= f.button :submit, "Sign up", class: "btn waves-effect waves-light col s12" %>
+                </div>
+            </div>
+            <div class="input-field col s6 m6 l6">
+                <p class="margin align-left medium-small">
+                  <% if controller_name != 'sessions' %>
+                    <%= link_to "Log in", new_session_path(resource_name) %>
+                  <% end %>
+                </p>
+            </div>
+            <% end %>
+        </div>
     </div>
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
-    </div>
-  <% end %>
 </div>
