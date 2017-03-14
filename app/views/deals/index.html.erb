@@ -1,50 +1,58 @@
 <%= render 'layouts/navbar' %>
 
+<p id="notice">
+    <%= notice %>
+</p>
 
-<p id="notice"><%= notice %></p>
 
-<div class="events-wrapper row">
-  <h1>Deals</h1>
-  <% @deals.each do |deal| %>
-    <div class="event">
-      <div class="event-head">
-        <div class="title">
-          <%= deal.title %>
+<% @deals.each do |deal| %>
+<div class="row">
+  <div class="col s12 m4 l4 offset-l4 offset-m4">
+    
+    <div class="card hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+            <h2 class="left-align card-title-top center"><%= deal.title %></h2>
+            <div class="valign-wrapper card-img-wrap">
+                <%= image_tag deal.image.url(:medium), class:'img-responsive' %>
+            </div>
         </div>
-      </div>
-      <div class="image center-block">
-        <%= link_to (image_tag deal.image.url(:medium), class:'img-responsive'), deal_path(deal) %>
-      </div>
-      <p class="title">
-        <%= deal.title %>
-        <br/>
-          <%= deal.start_time %>   
-          <%= deal.end_time %>   
-        <br/>
-        <%= deal.description %>
-        <br/>
-          <% if current_user.voted_for?(deal) %>
-          <%= link_to('Favorited') %>
-          <% else %>
-          <%= link_to('Favorite!', vote_up_deal_path(deal), :method => :post) %>
-          <% end %>
-          <br/>
-          <% unless current_user.voted_for?(deal) %>
-          <%= link_to('Not Favorited') %>
-          <% else %>
-          <%= link_to('Unfavorite', vote_reset_deal_path(deal), :method => :post) %>
-          <% end %>
-          <br/>
-          <% unless @user.is_manager == true %>
-          <% else %>
-          <%= link_to 'Edit', edit_deal_path(deal) %>
-          <br/>
-          <%= link_to 'Destroy', deal, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
+        <div class="card-content">
+            <span class="card-title activator brand-text blue-text">Deal Information<i class="mdi-navigation-more-vert right"></i>
+            </span>
+            <p><%= deal.start_time.strftime("%m/%d/%Y") %><%= deal.end_time.strftime("%m/%d/%Y") %></p>
+        </div>
+        <div class="card-reveal">
+            <div class="rev-title-wrap">
+                <span class="card-title activator brand-text blue-text"><%= deal.title %><i class="mdi-navigation-close blue-text right"></i>
+                </span>
+                <p><%= deal.start_time.strftime("%m/%d/%Y") %><%= deal.end_time.strftime("%m/%d/%Y") %></p>
+            </div>
+            <p class="rev-content">
+              <%= deal.description %>
+            </p>
+            
+            <% if current_user.voted_for?(deal) %>
+              <%= link_to('Favorited') %>
+            <% else %>
+              <%= link_to('Favorite!', vote_up_event_path(deal), :method => :post) %>
+            <% end %>
+            <br/>
+            <% unless current_user.voted_for?(deal) %>
+              <%= link_to('Not Favorited') %>
+            <% else %>
+              <%= link_to('Unfavorite', vote_reset_event_path(deal), :method => :post) %>
+            <% end %>
+            <br/>
+            <% unless @user.is_manager == true %>
+            <% else %>
+              <%= link_to 'Edit', edit_deal_path(deal) %>
+            <br/>
+            <%= link_to 'Destroy', deal, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+        </div>
     </div>
-  <% end %>
-  <% unless @user.is_manager != true %>
-  <%= link_to 'New Deal', new_deal_path %>
-  <% else %>
-  <% end %>
 </div>
+</div>
+<% end %>
+
+

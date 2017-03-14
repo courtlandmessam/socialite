@@ -24,23 +24,21 @@
                 <%= venue.location %>
                 <br/>
                 <%= venue.description %>
-                <br/>
-                <%= (venue.votes_for - venue.votes_against) %>
-                <br/>
+                <br/>                <br/>
                 <% if current_user.voted_for?(venue) %>
-                  <%= link_to('You voted thumbs up for this venue! - (inactive - already voted)') %>
+                  <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_path(venue), :method => :post) %>
                 <% else %>
-                  <%= link_to('Vote for this venue! - (thumbs up)', vote_up_venue_path(venue), :method => :post) %>                  
+                  <%= link_to('', vote_up_venue_path(venue), class: "fa fa-thumbs-up",  :method => :post) %>    
                 <% end %>
-                <br/>
+                <%= venue.votes_for %>
+
                 <% if current_user.voted_against?(venue) %>
-                  <%= link_to('You voted thumbs down for this venue! - (inactive - already voted)') %>
+                  <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_reset_venue_path(venue), :method => :post) %>
                 <% else %>
-                  <%= link_to('Vote against this venue! - (thumbs down)', vote_down_venue_path(venue), :method => :post) %>
+                  <%= link_to('', vote_down_venue_path(venue), class: "fa fa-thumbs-down", :method => :post) %>
                 <% end %>
-                <br/>
-                <%= link_to('Reset vote!', vote_reset_venue_path(venue), :method => :post) %>
-                <br/>
+                <%= venue.votes_against %>
+
                 <% if venue.user_id == current_user.id %>
                   <%= link_to 'Edit', edit_venue_path(venue) %>
                 <% else %>
@@ -59,22 +57,22 @@
                             <%= comment.content %></p>
                     </div>
 
-                    <%= (comment.votes_for - comment.votes_against) %>
                     <br/>
                     <% if current_user.voted_for?(comment) %>
-                      <%= link_to('You voted thumbs up for this comment! - (inactive - already voted)') %>
+                    <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>                      
                     <% else %>
-                      <%= link_to('Vote for this comment! - (thumbs up)', vote_up_venue_comment_path(venue, comment), :method => :post) %>
+                    <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_up_venue_comment_path(venue, comment), :method => :post) %>
                     <% end %>
-                    <br/>
+                    <%= comment.votes_for %>
+
                     <% if current_user.voted_against?(comment) %>
-                      <%= link_to('You voted thumbs down for this comment! - (inactive - already voted)') %>
+                      <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>                      
                     <% else %>
-                      <%= link_to('Vote against this comment! - (thumbs down)', vote_down_venue_comment_path(venue, comment), :method => :post) %>
+                      <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_down_venue_comment_path(venue, comment), :method => :post) %>                      
                     <% end %>
-                    <br/>
-                    <%= link_to('Reset!', vote_reset_venue_comment_path(venue, comment), :method => :post) %>
-                    <br/>
+                    <%= comment.votes_against%>
+
+                    <br/>                    <br/>
                     <%= time_ago_in_words(comment.created_at) %> ago
                     
 
@@ -104,9 +102,6 @@
                 
                 
                 <div class="comment-like-form row">
-                    <div class="like-button col-sm-1">
-                        <i class="fa fa-heartbeat" aria-hidden="true"></i>
-                    </div>
                     <div class="comment-form col-sm-11">
                         <%= simple_form_for [venue, venue.comments.new] do |f| %>
                           <%= f.input :image %>

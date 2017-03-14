@@ -9,6 +9,6 @@ class Venue < ApplicationRecord
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def self.search(search)
-  	where("title LIKE ?", "%#{search}%") 
+  	where("title iLIKE ?", "%#{search}%") 
   end
 end

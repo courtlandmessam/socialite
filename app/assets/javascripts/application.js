@@ -29,6 +29,17 @@ $(document).on('turbolinks:load', function() {
       selectYears: 15 // Creates a dropdown of 15 years to control year
   });
   
+  $('input.autocomplete').autocomplete({
+    data: {
+      "Adoré Nightclub": null,
+      "American Social": null,
+      "BLUME Nightclub": null,
+      "Heart Nightclub": 'http://images1.miaminewtimes.com/imager/u/745xauto/7866062/heart-nightclub-miami.png'
+    },
+    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+  });
+      
+  
   // $('select').material_select();
   
 });

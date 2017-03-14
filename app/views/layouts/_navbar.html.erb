@@ -86,15 +86,7 @@
   <ul class="right hide-on-med-and-down">
     <% if user_signed_in? %>
     <li>
-      <form>
-        <div class="input-field">
-          <%= form_tag(venues_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search] %>
-          <% end %>
-          <label for="search"><i class="material-icons">search</i></label>
-          <%# submit_tag "Search", :name => nil %>
-        </div>
-      </form>
+    
     </li>
       <li>
         <%= link_to "Events", events_path %>
@@ -155,7 +147,21 @@
     <li><a class="subhead-padding">Events<i class="material-icons">arrow_right_drop</i></li></a>
     <li><a class="subhead-padding">Feedback<i class="material-icons">arrow_right_drop</i></li></a>
   </ul>
+  
+  <!--SEARCH BAR -->
   <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+  <ul class="left">
+    <form>
+      <div class="input-field">
+        <%= form_tag(venues_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], class: "autocomplete" %>
+        <% end %>
+        <label for="search"><i class="material-icons">search</i></label>
+        <%# submit_tag "Search", :name => nil %>
+      </div>
+    </form>
+  </ul>
+  
 </div>
 </nav>
 <% else %>
