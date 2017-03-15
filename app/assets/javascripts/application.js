@@ -24,6 +24,12 @@ $(document).on('turbolinks:load', function() {
             draggable: true // Choose whether you can drag to open on touch screens
     });
         
+    // $('.collapsible').collapsible({
+    //   accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    //   onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
+    //   onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
+    // });  
+        
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15 // Creates a dropdown of 15 years to control year
@@ -32,13 +38,52 @@ $(document).on('turbolinks:load', function() {
   $('input.autocomplete').autocomplete({
     data: {
       "Adoré Nightclub": null,
-      "American Social": null,
+      "American Social": null, // Image link goes here. ex. 'http://images1.miaminewtimes.com/imager/u/745xauto/7866062/heart-nightclub-miami.png'
       "BLUME Nightclub": null,
+      "Bahia": null,
+      "Bar Louie": null,
+      "Bardot": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      "VenueNameGoesHere": null,
+      
       "Heart Nightclub": 'http://images1.miaminewtimes.com/imager/u/745xauto/7866062/heart-nightclub-miami.png'
     },
     limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
   });
       
+  $(".dropdown-button").dropdown();
+  
+  
+  
+  
+  
   
   // $('select').material_select();
   

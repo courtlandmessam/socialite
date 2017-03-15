@@ -21,10 +21,9 @@
                 </span>
             </div>
             <div class="card-content center">
-                <%= venue.location %>
-                <br/>
-                <%= venue.description %>
-                <br/>                <br/>
+                <%= venue.location %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <%= venue.description %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                
                 <% if current_user.voted_for?(venue) %>
                   <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_path(venue), :method => :post) %>
                 <% else %>
@@ -38,15 +37,30 @@
                   <%= link_to('', vote_down_venue_path(venue), class: "fa fa-thumbs-down", :method => :post) %>
                 <% end %>
                 <%= venue.votes_against %>
-
+                <br>
                 <% if venue.user_id == current_user.id %>
-                  <%= link_to 'Edit', edit_venue_path(venue) %>
+                  <%= link_to 'Edit Venue', edit_venue_path(venue) %>
                 <% else %>
                 <% end %>
             </div>
 
             <div class="divider"></div>
             <div class="venue-bottom">
+              
+              <!--ENTER COMMENT-->
+              
+              <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                  <div class="collapsible-header"><i class="material-icons">filter_drama</i>Comment</div>
+                  <div class="collapsible-body"><span><%= simple_form_for [venue, venue.comments.new] do |f| %>
+                    <%= f.input :image %>
+                    <%= f.input :content %>
+                    <%= f.button :submit, class: "col s12" %>
+                  <% end %></span></div>
+                </li>
+              </ul>
+
+              
                 <% if venue.comments %>
                 <% venue.comments.order("created_at desc").each do |comment| %>
                 <div class="comment">
@@ -99,19 +113,11 @@
                     <% end %>
                     <% end %>
                 </div>
-                
-                
-                <div class="comment-like-form row">
-                    <div class="comment-form col-sm-11">
-                        <%= simple_form_for [venue, venue.comments.new] do |f| %>
-                          <%= f.input :image %>
-                          <%= f.input :content %>
-                          <%= f.button :submit, class: "col s12" %>
-                        <% end %>
-                    </div>
-                </div>
             </div>
             <% end %>
+            
+            
+            
             <% if params[:search] %>
             <% else %>
               <%= will_paginate @venues %>

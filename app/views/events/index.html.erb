@@ -3,9 +3,10 @@
 <p id="notice">
     <%= notice %>
 </p>
-
+  <h2 class='center'>Events</h2>
 
 <% @events.each do |event| %>
+
 <div class="row">
   <div class="col s12 m4 l4 offset-l4 offset-m4">
     
@@ -28,26 +29,18 @@
                 <p><%= event.date_time.strftime("%m/%d/%Y") %></p>
             </div>
             <p class="rev-content">
-              <%= event.description %>
-            </p>
-            
+              <%= event.description %>            
             <% if current_user.voted_for?(event) %>
-              <%= link_to('Favorited') %>
+              <%= link_to("<i class='fa fa-star'></i>".html_safe, vote_reset_event_path(event), :method => :post) %>
             <% else %>
-              <%= link_to('Favorite!', vote_up_event_path(event), :method => :post) %>
-            <% end %>
-            <br/>
-            <% unless current_user.voted_for?(event) %>
-              <%= link_to('Not Favorited') %>
-            <% else %>
-              <%= link_to('Unfavorite', vote_reset_event_path(event), :method => :post) %>
+              <%= link_to("<i class='fa fa-star-o'></i>".html_safe, vote_up_event_path(event), :method => :post) %>
             <% end %>
             <br/>
             <% unless @user.is_manager == true %>
             <% else %>
-              <%= link_to 'Edit', edit_event_path(event) %>
+              <%= link_to 'Edit Event', edit_event_path(event) %>
             <br/>
-            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete Event', event, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>
         </div>
     </div>

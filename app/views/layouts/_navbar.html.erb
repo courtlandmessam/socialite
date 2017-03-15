@@ -9,10 +9,10 @@
   <ul class="right hide-on-med-and-down">
     <% if user_signed_in? %>
       <li>
-        <%= link_to "Events", events_path %>
+        <%= link_to "Venues", venues_path %>
       </li>
       <li>
-        <%= link_to "Venues", venues_path %>
+        <%= link_to "Events", events_path %>
       </li>
       <li>
         <%= link_to "Deals", deals_path %>
@@ -80,6 +80,15 @@
 
 <% elsif @user.is_manager == true %>
 
+
+<!--LOG OUT DROPDOWN-->
+<!-- <ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul> -->
+
 <nav class="yellow darken-2" role="navigation">
 <div class="nav-wrapper">
   <%= link_to "Socialite", user_path(1), class: "brand-logo center" %></a>
@@ -89,10 +98,10 @@
     
     </li>
       <li>
-        <%= link_to "Events", events_path %>
+        <%= link_to "Venues", venues_path %>
       </li>
       <li>
-        <%= link_to "Venues", venues_path %>
+        <%= link_to "Events", events_path %>
       </li>
       <li>
         <%= link_to "Deals", deals_path %>
