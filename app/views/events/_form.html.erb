@@ -1,7 +1,7 @@
 <%= render 'layouts/navbar' %>
 
 <div class="form-wrapper">
-  <h1>Event</h1>
+  <h1>New Event</h1>
   <%= simple_form_for(@event) do |f| %>
     <div class="form-inputs">
       <%= f.input :image %>
@@ -11,10 +11,9 @@
       <%# f.input :date_time, as: :time %>
       <%= f.input :description %>
     </div>
-    <div class="form-actions">
+    <div class="form-actions btn btn-default red darken-2 sbtn waves-effect waves-light col s12 waves-input-wrapper">
       <%= f.button :submit %>
     </div>
   <% end %>
 </div>
-
 

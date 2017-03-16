@@ -1,232 +1,119 @@
 <%= render 'layouts/navbar' %>
 
-<% if current_user.is_manager == true %>
-<div class="venues-wrapper row">
-  <%= link_to 'New Event', new_event_path %>
-  <br/>
-  <%= link_to 'New Deal', new_deal_path %>
-
-  <h1>Venues</h1>
-  <% @venues.each do |venue| %>
-    <div class="venue">
-      <div class="venue-head">
-        <div class="title">
-          <%= venue.title %>
+<div id="profile-page-header" class="card __web-inspector-hide-shortcut__">
+    <div class="card-image">
+        <%= image_tag "black-city", class: "circle z-depth-2 responsive-img" %>
+    </div>
+    <figure class="card-profile-image">
+        <%= image_tag "heart-nightclub-logo", class: "circle z-depth-5 responsive-img page-logo" %>
+    </figure>
+    <div class="card-content">
+      
+      <div class="button-margin-right right waves-effect waves-light btn red"><i class="material-icons left">today</i><%= link_to "New Event", new_event_path, class: "button-color" %></div>
+      <div class="button-margin-left left waves-effect waves-light btn" ><i class="material-icons left">new_releases</i><%= link_to "New Deal", deals_path, class: "button-color" %></div>
+      
+        <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab">
+                    <a class="active" href="#test4">Venues</a>
+                </li>
+                <li class="tab">
+                    <a href="#test5">Events</a>
+                </li>
+                <li class="tab">
+                    <a href="#test6">Deals</a>
+                </li>
+            </ul>
         </div>
-      </div>
-      <div class="image center-block">
-        <%= link_to (image_tag venue.image.url(:medium), class:'img-responsive'), venue_path(venue) %>
-      </div>
-      <p class="title">
-        <%= venue.location %>
-        <br/>
-        Google Rating <%= venue.description %>/5
-        <br/>
-        Rating: <%= (venue.votes_for - venue.votes_against) %>
-        <br/>
-        Number of Upvotes: <%= (venue.votes_for) %>
-        <br/>
-        Number of Downvotes: <%= (venue.votes_against) %>
-        <br/>
-        Total Number of Votes Today: <%= (venue.votes_for + venue.votes_against) %>
-        <br/>
-        Total Number of Comments: <%= venue.comments.count %>
-        <% if current_user.voted_for?(venue) %>
-        <%= link_to('vote for this post!') %>
-        <% else %>
-        <%= link_to('vote for this post!', vote_up_venue_path(venue), :method => :post) %>
-        <% end %>
-        <br/>
-        <% if current_user.voted_against?(venue) %>
-        <%= link_to('vote against this post!') %>
-        <% else %>
-        <%= link_to('vote against this post!', vote_down_venue_path(venue), :method => :post) %>
-        <% end %>
-        <br/>
-        <%= link_to('Reset!', vote_reset_venue_path(venue), :method => :post) %>
-        <br/>
-        <% if venue.user_id == current_user.id %>
-          <%= link_to 'Edit', edit_venue_path(venue) %>
-        <% else %>
-        <% end %>
-      </p>
-      <div class="venue-bottom">
-        <% if venue.comments %>
-          <% venue.comments.each do |comment| %>
-            <div class="comment">
-              <div class="user-name">
-                <%= comment.user.user_name %>
-              </div>
-              <br/>
-                <%= (comment.votes_for - comment.votes_against) %>
-              <br/>
-              <div class="comment-content">
-                <%= time_ago_in_words(comment.created_at) %> ago
-                <%= comment.content %>
-                <% if comment.image_file_name != nil %>
-                  <%= image_tag comment.image.url(:small), class:'img-responsive' %>
-                <% else %>
-                <% end %>
-              </div>
-              <% if comment.user == current_user %>
-                <%= link_to venue_comment_path(venue, comment), method: :delete, data: { confirm: "Are you sure?" } do %>
-                  <i class="fa fa-times-circle" aria-hidden="true"></i>
-                <% end %>
-              <% end %>
+        <div class="card-content grey lighten-4">
+            <div id="test4">
+
+                <!--Venues Feed Starts Here-->
+                <div class="row">
+                    <div class="col s12 m8 l8 offset-l2 offset-2">
+                        <% @venues.each do |venue| %>
+
+                        <div class="card hoverable">
+
+                            <div id="chartContainer" style="height: 300px; width: 100%;" class="more-margin-padding"></div>
+
+                            <div class="card-content center">
+                                <div class="rating-score">Google Rating:
+                                    <%= venue.description %>/5
+                                    <br>
+                                    <%= venue.location %>
+                                </div>
+
+                                <div class="divider"></div>
+                                <div id="standing" class="hide"><%= (venue.votes_for - venue.votes_against) %></div>
+                                <div id="upvotes" class="hide"><%= (venue.votes_for) %></div>
+                                <div id="downvotes" class="hide"><%= (venue.votes_against) %></div>
+                                <div id="dailyVotes" class="hide"><%= (venue.votes_for + venue.votes_against) %></div>
+                                <div id="totalComments" class="hide"><%= venue.comments.count %></div>
+                            </div>
+
+                            <div class="venue-bottom">
+                                <% if venue.comments %>
+                                <% venue.comments.order("created_at desc").each do |comment| %>
+                                <div class="comment">
+
+                                    <div class="comment-padding">
+                                        <% if current_user.voted_for?(comment) %>
+                                        <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>
+                                    <% else %>
+                                        <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_up_venue_comment_path(venue, comment), :method => :post) %>
+                                        <% end %>
+                                        <%= comment.votes_for %>
+
+                                        <% if current_user.voted_against?(comment) %>
+                                        <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>
+                                    <% else %>
+                                        <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_down_venue_comment_path(venue, comment), :method => :post) %>
+                                        <% end %>
+                                        <%= comment.votes_against%>
+                                    </div>
+
+                                    <div class="user-name">
+                                      
+                                            <strong class="comment-padding"><%= comment.user.user_name %></strong>
+                                            &nbsp
+                                            <div class="comment-padding"><%= comment.content %></div>
+
+                                    </div>
+
+                                    <div class="comment-padding">
+                                        <em></em><%= time_ago_in_words(comment.created_at) %>
+                                        ago</em>
+                                    </div>
+
+                                    <div class="comment-content">
+                                        <% comment.image_file_name != nil %>
+                                        <ul class="collapsible" data-collapsible="accordion">
+                                            <li>
+                                                <div class="collapsible-header center">
+                                                    <i class="material-icons"></i>View Image</div>
+                                                <div class="collapsible-body">
+                                                    <span><%= image_tag comment.image.url(:medium), class:'center responsive-img materialboxed' %></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <% end %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
             </div>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="comment-like-form row">
-        <div class="like-button col-sm-1">
-          <i class="fa fa-heartbeat" aria-hidden="true"></i>
+            <!--Venues Feed Ends Here-->
+            <div id="test5">
+                <%= link_to "Events", events_path %>sdfdfsdfds
+            </div>
+            <div id="test6">
+              
+            </div>
         </div>
-        <div class="comment-form col-sm-11">
-          <%= simple_form_for [venue, venue.comments.new] do |f| %>
-            <%= f.input :image %>
-            <%= f.input :content %>
-            <%= f.button :submit %>
-          <% end %>
-        </div>
-      </div>
     </div>
-  <% end %>
-
-  <div class="events-wrapper row">
-  <h1>Events</h1>
-  <% @events.each do |event| %>
-    <div class="event">
-      <div class="event-head">
-        <div class="title">
-          <%= event.title %>
-        </div>
-      </div>
-      <div class="image center-block">
-        <%= link_to (image_tag event.image.url(:medium), class:'img-responsive'), event_path(event) %>
-      </div>
-      <p class="title">
-        <%= event.title %>
-        <br/>
-        <%= event.date_time %>
-        <br/>
-        <%= event.description %>
-        <br/>
-        <%= link_to 'Edit', edit_event_path(event) %>
-        <br/>
-        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
-    </div>
-  <% end %>
-  </div>
-
-  <div class="events-wrapper row">
-  <h1>Deals</h1>
-  <% @deals.each do |deal| %>
-    <div class="event">
-      <div class="event-head">
-        <div class="title">
-          <%= deal.title %>
-        </div>
-      </div>
-      <div class="image center-block">
-        <%= link_to (image_tag deal.image.url(:medium), class:'img-responsive'), deal_path(deal) %>
-      </div>
-      <p class="title">
-        <%= deal.title %>
-        <br/>
-          <%= deal.start_time %>   
-          <%= deal.end_time %>   
-        <br/>
-        <%= deal.description %>
-        <br/>
-          <% if current_user.voted_for?(deal) %>
-          <%= link_to('Favorited') %>
-          <% else %>
-          <%= link_to('Favorite!', vote_up_deal_path(deal), :method => :post) %>
-          <% end %>
-          <br/>
-          <% unless current_user.voted_for?(deal) %>
-          <%= link_to('Not Favorited') %>
-          <% else %>
-          <%= link_to('Unfavorite', vote_reset_deal_path(deal), :method => :post) %>
-          <% end %>
-          <br/>
-          <% unless @user.is_manager == true %>
-          <% else %>
-          <%= link_to 'Edit', edit_deal_path(deal) %>
-          <br/>
-          <%= link_to 'Destroy', deal, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-    </div>
-  <% end %>
 </div>
-
-<% else %>
-<div class="venues-wrapper row">
-  <%= link_to "Edit Your Account", edit_user_registration_path %>
-
-<h2> Comments Youve Liked </h2>
- <div class="venue-bottom">
-  <% @all_comments.each do |comment| %>
-   <% if @user_liked_comments_id.any? {|liked| liked == comment.id} %>
-      <div class="comment">
-         <div class="user-name">
-           <%= comment.user.user_name %>
-         </div>
-           <br/>
-            <div class="comment-content">
-             <%= comment.content %>
-             <% if comment.image_file_name != nil %>
-                  <%= image_tag comment.image.url(:small), class:'img-responsive' %>
-             <% else %>
-    <% end %>
-  <% end %>
-<% end %>
-</div>
-
-<h2> Your Favorite Deals </h2>
- <div class="venue-bottom">
-  <% @all_deals.each do |deal| %>
-   <% if @user_liked_deals_id.any? {|liked| liked == deal.id} %>
-      <div class="comment">
-         <div class="user-name">
-           <%= deal.title %>
-         </div>
-           <br/>
-            <div class="comment-content">
-             <%= deal.description %>
-             <% if deal.image_file_name != nil %>
-                  <%= image_tag deal.image.url(:medium), class:'img-responsive' %>
-             <% else %>
-    <% end %>
-    <%= deal.start_time %>
-    <%= deal.end_time %>
-  <% end %>
-<% end %>
-</div>
-
-<h2> Your Favorite Events </h2>
- <div class="venue-bottom">
-  <% @all_events.each do |event| %>
-   <% if @user_liked_events_id.any? {|liked| liked == event.id} %>
-      <div class="comment">
-         <div class="user-name">
-           <%= event.title %>
-         </div>
-           <br/>
-            <div class="comment-content">
-             <%= event.description %>
-             <% if event.image_file_name != nil %>
-                  <%= image_tag event.image.url(:medium), class:'img-responsive' %>
-             <% else %>
-    <% end %>
-    <%= event.date_time %>
-  <% end %>
-<% end %>
-</div>
-
-
-
-
-</div>
-<% end %>

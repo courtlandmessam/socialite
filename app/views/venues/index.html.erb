@@ -1,3 +1,4 @@
+<!--VENUES INDEX-->
 <%= render 'layouts/navbar' %>
 
 <% unless @user.id == 1 %>
@@ -21,98 +22,105 @@
                 </span>
             </div>
             <div class="card-content center">
-                <%= venue.location %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <%= venue.description %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                
-                <% if current_user.voted_for?(venue) %>
-                  <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_path(venue), :method => :post) %>
-                <% else %>
-                  <%= link_to('', vote_up_venue_path(venue), class: "fa fa-thumbs-up",  :method => :post) %>    
-                <% end %>
-                <%= venue.votes_for %>
+              <% if current_user.voted_for?(venue) %>
+                <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_path(venue), :method => :post) %>
+              <% else %>
+                <%= link_to('', vote_up_venue_path(venue), class: "fa fa-thumbs-up",  :method => :post) %>    
+              <% end %>
+              <%= venue.votes_for %>
 
-                <% if current_user.voted_against?(venue) %>
-                  <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_reset_venue_path(venue), :method => :post) %>
-                <% else %>
-                  <%= link_to('', vote_down_venue_path(venue), class: "fa fa-thumbs-down", :method => :post) %>
-                <% end %>
-                <%= venue.votes_against %>
-                <br>
-                <% if venue.user_id == current_user.id %>
-                  <%= link_to 'Edit Venue', edit_venue_path(venue) %>
-                <% else %>
-                <% end %>
+              <% if current_user.voted_against?(venue) %>
+                <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_reset_venue_path(venue), :method => :post) %>
+              <% else %>
+                <%= link_to('', vote_down_venue_path(venue), class: "fa fa-thumbs-down", :method => :post) %>
+              <% end %>
+              <%= venue.votes_against %>
+              <br>
+              <% if venue.user_id == current_user.id %>
+                <%= link_to 'Edit Venue', edit_venue_path(venue) %>
+              <% else %>
+              <% end %>
+              <div class="rating-score">Google Rating:
+                  <%= venue.description %>/5
+                  <br>
+                  <%= venue.location %>
+              </div>
             </div>
 
             <div class="divider"></div>
             <div class="venue-bottom">
-              
-              <!--ENTER COMMENT-->
-              
               <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">filter_drama</i>Comment</div>
-                  <div class="collapsible-body"><span><%= simple_form_for [venue, venue.comments.new] do |f| %>
-                    <%= f.input :image %>
-                    <%= f.input :content %>
-                    <%= f.button :submit, class: "col s12" %>
-                  <% end %></span></div>
-                </li>
+                  <li>
+                      <div class="collapsible-header">
+                          <i class="material-icons">filter_drama</i>Comment</div>
+                      <div class="collapsible-body">
+                          <span><%= simple_form_for [venue, venue.comments.new] do |f| %>
+                              <%= f.input :image %>
+                              <%= f.input :content %>
+                              <%= f.button :submit, class: "col s12" %>
+                              <% end %>
+                          </span>
+                      </div>
+                  </li>
               </ul>
 
-              
-                <% if venue.comments %>
-                <% venue.comments.order("created_at desc").each do |comment| %>
-                <div class="comment">
-                    <div class="user-name">
-                        <p>
-                            <strong><%= comment.user.user_name %></strong>
-                            &nbsp;
-                            <%= comment.content %></p>
-                    </div>
+              <% if venue.comments %>
+              <% venue.comments.order("created_at desc").each do |comment| %>
+              <div class="comment">
 
-                    <br/>
-                    <% if current_user.voted_for?(comment) %>
-                    <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>                      
-                    <% else %>
-                    <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_up_venue_comment_path(venue, comment), :method => :post) %>
-                    <% end %>
-                    <%= comment.votes_for %>
+                  <div class="comment-padding">
+                      <% if current_user.voted_for?(comment) %>
+                      <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>
+                      <% else %>
+                      <%= link_to("<i class='fa fa-thumbs-up'></i>".html_safe, vote_up_venue_comment_path(venue, comment), :method => :post) %>
+                      <% end %>
+                      <%= comment.votes_for %>
 
-                    <% if current_user.voted_against?(comment) %>
-                      <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>                      
-                    <% else %>
-                      <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_down_venue_comment_path(venue, comment), :method => :post) %>                      
-                    <% end %>
-                    <%= comment.votes_against%>
+                      <% if current_user.voted_against?(comment) %>
+                      <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_reset_venue_comment_path(venue, comment), :method => :post) %>
+                  <% else %>
+                      <%= link_to("<i class='fa fa-thumbs-down'></i>".html_safe, vote_down_venue_comment_path(venue, comment), :method => :post) %>
+                      <% end %>
+                      <%= comment.votes_against%>
+                  </div>
 
-                    <br/>                    <br/>
-                    <%= time_ago_in_words(comment.created_at) %> ago
-                    
+                  <div class="user-name">
+                      <p>
+                          <strong class="comment-padding"><%= comment.user.user_name %></strong>
+                          &nbsp
+                          <%= comment.content %>
+                      </p>
+                  </div>
 
-                    <div class="comment-content">
-                        <% comment.image_file_name != nil %>
-                        <ul class="collapsible" data-collapsible="accordion">
-                            <li>
-                                <div class="collapsible-header center">
-                                    <i class="material-icons"></i>View Image</div>
-                                <div class="collapsible-body">
-                                    <span><%= image_tag comment.image.url(:medium), class:'center responsive-img materialboxed' %></span>
-                                </div>
-                            </li>
-                        </ul>
+                  <div class="comment-padding">
+                      <%= time_ago_in_words(comment.created_at) %>
+                      ago
+                  </div>
 
-                        <% if comment.user == current_user %>
-                          <p><%= link_to venue_comment_path(venue, comment), method: :delete, data: { confirm: "Are you sure?" } do %></p>
-                          <i class="fa fa-times-circle" aria-hidden="true">delete</i>
-                        <% end %>
-                        <% end %>
-                        
-                        <div class="divider"></div>
-                    </div>
-                    <% end %>
-                    <% end %>
-                </div>
+                  <div class="comment-content">
+                      <% comment.image_file_name != nil %>
+                      <ul class="collapsible" data-collapsible="accordion">
+                          <li>
+                              <div class="collapsible-header center">
+                                  <i class="material-icons"></i>View Image</div>
+                              <div class="collapsible-body">
+                                  <span><%= image_tag comment.image.url(:medium), class:'center responsive-img materialboxed' %></span>
+                              </div>
+                          </li>
+                      </ul>
+                      
+                      <% if comment.user == current_user %>
+                        <p><%= link_to venue_comment_path(venue, comment), method: :delete, data: { confirm: "Are you sure?" } do %></p>
+                        <i class="fa fa-times-circle comment-padding" aria-hidden="true"></i>
+                      <% end %>
+                      <% end %>
+                      
+                      <div class="divider"></div>
+                      
+                  </div>
+                  <% end %>
+                  <% end %>
+              </div>
             </div>
             <% end %>
             
@@ -124,4 +132,4 @@
             <% end %>
         </div>
     </div>
-</div>
+</div>    
